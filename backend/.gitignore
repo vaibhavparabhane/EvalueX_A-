@@ -2,3 +2,10 @@ node_modules/
 .env
 *.log
 supabase/.temp/
+supabase_schema/.temp/
+
+# Python ignore patterns
+__pycache__/
+*.pyc
+venv/
+.pytest_cache/

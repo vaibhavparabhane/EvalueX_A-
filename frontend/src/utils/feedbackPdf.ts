@@ -177,3 +177,4 @@ export function generateFeedbackPdfBlob(data: FeedbackPdfData): Blob {
 
   return doc.output('blob') as Blob;
 }
+
