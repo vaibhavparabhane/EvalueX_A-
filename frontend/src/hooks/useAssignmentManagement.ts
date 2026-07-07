@@ -4,6 +4,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { assignmentService } from '@/services/assignments';
 import { toast } from 'sonner';
 import { Assignment } from '@/types/app.types';
+import { supabase } from '@/services/supabaseClient';
 
 export function useAssignmentManagement() {
   const { user, loading: authLoading } = useAuth();
@@ -39,23 +40,33 @@ export function useAssignmentManagement() {
     try {
       const data = await assignmentService.fetchAssignments();
       
-      const withStats = await Promise.all(
-        data.map(async (a) => {
-          const subs = await assignmentService.fetchAssignmentSubmissionsSummary(a.id);
-          const total = subs.length || 0;
-          const graded = subs.filter(s => s.final_score !== null) || [];
-          const avg = graded.length > 0
-            ? Math.round(graded.reduce((acc, s) => acc + (s.final_score || 0), 0) / graded.length)
-            : 0;
+      // Batch fetch all submissions for these assignments to avoid N+1 queries
+      const assignmentIds = data.map(a => a.id);
+      let allSubmissions: any[] = [];
+      if (assignmentIds.length > 0) {
+        const { data: subs, error } = await supabase
+          .from('submissions')
+          .select('assignment_id, final_score')
+          .in('assignment_id', assignmentIds);
+        if (error) throw error;
+        allSubmissions = subs || [];
+      }
 
-          return {
-            ...a,
-            submission_count: total,
-            graded_count: graded.length,
-            avg_score: avg,
-          };
-        })
-      );
+      const withStats = data.map((a) => {
+        const subs = allSubmissions.filter(s => s.assignment_id === a.id);
+        const total = subs.length || 0;
+        const graded = subs.filter(s => s.final_score !== null) || [];
+        const avg = graded.length > 0
+          ? Math.round(graded.reduce((acc, s) => acc + (s.final_score || 0), 0) / graded.length)
+          : 0;
+
+        return {
+          ...a,
+          submission_count: total,
+          graded_count: graded.length,
+          avg_score: avg,
+        };
+      });
 
       setAssignments(withStats);
     } catch (err: any) {

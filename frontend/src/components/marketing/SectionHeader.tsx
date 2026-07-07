@@ -6,7 +6,7 @@ interface SectionHeaderProps {
   subtitle: string;
   pillText?: string;
   pillIcon?: LucideIcon;
-  pillColor?: 'teal' | 'indigo';
+  pillColor?: 'primary' | 'accent';
   className?: string;
   centered?: boolean;
 }
@@ -16,13 +16,13 @@ export function SectionHeader({
   subtitle,
   pillText,
   pillIcon: PillIcon,
-  pillColor = 'teal',
+  pillColor = 'primary',
   className,
   centered = true,
 }: SectionHeaderProps) {
-  const pillColorClasses = pillColor === 'teal' 
-    ? "text-teal-600 bg-teal-500/5 border-teal-500/10" 
-    : "text-indigo-600 bg-indigo-500/5 border-indigo-500/10";
+  const pillColorClasses = pillColor === 'primary' 
+    ? "text-primary bg-primary/5 border-primary/10" 
+    : "text-accent bg-accent/5 border-accent/10";
 
   return (
     <div className={cn(

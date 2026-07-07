@@ -51,27 +51,30 @@ export function useClassDetails() {
           .in('id', assignmentIds);
 
         if (assData) {
-          const assWithStats = await Promise.all(
-            assData.map(async (a) => {
-              const { data: subs } = await supabase
-                .from('submissions')
-                .select('final_score')
-                .eq('assignment_id', a.id);
+          // Batch fetch all submissions for these assignments to avoid N+1 queries
+          const { data: subsData, error: subsError } = await supabase
+            .from('submissions')
+            .select('assignment_id, final_score')
+            .in('assignment_id', assignmentIds);
 
-              const gradedSubs = subs?.filter(s => s.final_score !== null) || [];
-              const avgScore = gradedSubs.length > 0
-                ? Math.round(gradedSubs.reduce((acc, s) => acc + (s.final_score || 0), 0) / gradedSubs.length)
-                : 0;
+          if (subsError) throw subsError;
+          const allSubmissions = subsData || [];
 
-              return {
-                id: a.id,
-                title: a.title,
-                description: a.description,
-                submission_count: subs?.length || 0,
-                avg_score: avgScore
-              };
-            })
-          );
+          const assWithStats = assData.map((a) => {
+            const subs = allSubmissions.filter(s => s.assignment_id === a.id);
+            const gradedSubs = subs.filter(s => s.final_score !== null);
+            const avgScore = gradedSubs.length > 0
+              ? Math.round(gradedSubs.reduce((acc, s) => acc + (s.final_score || 0), 0) / gradedSubs.length)
+              : 0;
+
+            return {
+              id: a.id,
+              title: a.title,
+              description: a.description,
+              submission_count: subs.length,
+              avg_score: avgScore
+            };
+          });
           setAssignments(assWithStats);
         }
       }

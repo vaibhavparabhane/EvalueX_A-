@@ -5,7 +5,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-slate-200/40 dark:border-white/5 bg-white dark:bg-slate-950 py-12 relative overflow-hidden">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-muted-foreground font-semibold">
           
           {/* Logo */}

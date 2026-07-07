@@ -14,6 +14,55 @@ export default {
     },
     extend: {
       colors: {
+        "edtech-navy": {
+          DEFAULT: "#1A2332",
+          foreground: "#FFFFFF",
+        },
+        "edtech-indigo": {
+          DEFAULT: "#2F4B7C",
+          foreground: "#FFFFFF",
+        },
+        "edtech-indigo-light": "#EEF2F8",
+        "edtech-slate": "#8B93A7",
+        "edtech-teal": {
+          DEFAULT: "#1FA2A1",
+          foreground: "#FFFFFF",
+        },
+        "edtech-teal-light": "#E6F4F1",
+        "edtech-bg": "#F7F8FA",
+        "edtech-charcoal": "#1F2933",
+        "edtech-gray-dark": "#4B5563",
+        "edtech-gray-muted": "#6B7280",
+        "edtech-green": {
+          DEFAULT: "#4CAF7D",
+          foreground: "#FFFFFF",
+        },
+        "edtech-green-light": "#EAF7EE",
+        "edtech-coral": {
+          DEFAULT: "#E2654A",
+          foreground: "#FFFFFF",
+        },
+        "edtech-coral-light": "#FDF0E8",
+        "edtech-border": "#E4E7EB",
+        "edtech-neutral-light": "#F1F2F4",
+        crail: {
+          DEFAULT: "#D97757",
+          foreground: "#FAF9F5",
+        },
+        cream: {
+          DEFAULT: "#FAF9F5",
+          foreground: "#141413",
+        },
+        dark: {
+          DEFAULT: "#141413",
+          foreground: "#FAF9F5",
+        },
+        "light-gray": "#E8E6DC",
+        "mid-gray": "#B0AEA5",
+        "muted-blue": {
+          DEFAULT: "#6A9BCC",
+          foreground: "#FAF9F5",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

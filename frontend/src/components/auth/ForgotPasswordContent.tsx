@@ -19,16 +19,16 @@ export function ForgotPasswordContent() {
   return (
     <div className="min-h-screen bg-[#07090e] flex flex-col items-center justify-center px-4 relative overflow-hidden select-none">
       {/* Sleek animated ambient glowing backdrops */}
-      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />
-      <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '8s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-purple-500/5 blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />
+      <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '8s' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[150px] pointer-events-none" />
 
       {/* Reusable Logo */}
       <AuthLogo />
 
       <div className="relative z-10 w-full max-w-[440px] space-y-7 bg-slate-950/40 border border-slate-900 backdrop-blur-xl p-8 md:p-10 rounded-[32px] shadow-2xl">
         {/* Glow behind the card */}
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/10 to-emerald-500/10 rounded-[32px] blur-xl opacity-30 pointer-events-none" />
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/10 to-accent/10 rounded-[32px] blur-xl opacity-30 pointer-events-none" />
 
         {/* Back to login */}
         <Link
@@ -43,9 +43,9 @@ export function ForgotPasswordContent() {
           <>
             {/* Heading */}
             <div className="space-y-2 text-left">
-              <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-emerald-400 p-[1.5px] shadow-[0_8px_30px_rgba(99,102,241,0.25)] flex items-center justify-center mb-4">
+              <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary to-accent p-[1.5px] shadow-[0_8px_30px_rgba(79,70,229,0.25)] flex items-center justify-center mb-4">
                 <div className="h-full w-full rounded-2xl bg-[#07090e] flex items-center justify-center">
-                  <Mail className="h-7 w-7 text-indigo-400 animate-pulse" />
+                  <Mail className="h-7 w-7 text-primary animate-pulse" />
                 </div>
               </div>
               <h1 className="text-3xl font-extrabold text-white tracking-tight">
@@ -73,7 +73,7 @@ export function ForgotPasswordContent() {
                     placeholder="educator@school.edu"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10 h-11 rounded-xl text-sm font-medium border-slate-800 bg-slate-950/60 text-white placeholder-slate-600 focus:border-indigo-500 focus:ring-indigo-500/20"
+                    className="pl-10 h-11 rounded-xl text-sm font-medium border-slate-800 bg-slate-950/60 text-white placeholder-slate-600 focus:border-primary focus:ring-primary/20"
                     required
                     autoFocus
                   />
@@ -83,7 +83,7 @@ export function ForgotPasswordContent() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full h-11 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 shadow-lg shadow-indigo-500/20 mt-4"
+                className="w-full h-11 rounded-xl font-bold text-sm text-primary-foreground flex items-center justify-center gap-2 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg shadow-primary/20 mt-4"
               >
                 {loading ? (
                   <><Loader2 className="h-4 w-4 animate-spin" /> Sending link...</>
@@ -105,7 +105,7 @@ export function ForgotPasswordContent() {
           <div className="space-y-6 text-center">
             {/* Success icon */}
             <div className="flex justify-center">
-              <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-emerald-400 p-[1.5px] shadow-[0_8px_30px_rgba(16,185,129,0.25)]">
+              <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-primary to-accent p-[1.5px] shadow-[0_8px_30px_rgba(79,70,229,0.25)]">
                 <div className="h-full w-full rounded-2xl bg-[#07090e] flex items-center justify-center">
                   <CheckCircle className="h-10 w-10 text-emerald-400" />
                 </div>
@@ -140,7 +140,7 @@ export function ForgotPasswordContent() {
                 { step: '4', text: 'Enter and confirm your new password' },
               ].map(({ step, text }) => (
                 <div key={step} className="flex items-center gap-3">
-                  <div className="h-6 w-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold text-white bg-gradient-to-br from-indigo-500 to-emerald-400">
+                  <div className="h-6 w-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold text-white bg-gradient-to-br from-primary to-accent">
                     {step}
                   </div>
                   <span className="text-sm font-medium text-slate-300">{text}</span>

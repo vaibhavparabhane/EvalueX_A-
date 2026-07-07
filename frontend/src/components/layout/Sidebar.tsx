@@ -109,7 +109,7 @@ export function Sidebar() {
       {/* Mobile Hamburger Toggle */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="lg:hidden fixed top-4 left-4 z-[60] h-10 w-10 flex items-center justify-center bg-sidebar border border-sidebar-border text-sidebar-foreground rounded-xl shadow-md hover:bg-sidebar-accent transition-colors"
+        className="lg:hidden fixed top-4 left-4 z-[60] h-10 w-10 flex items-center justify-center bg-edtech-navy border border-white/10 text-white rounded-xl shadow-md hover:bg-white/5 transition-colors"
         title="Toggle Menu"
       >
         {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -125,19 +125,19 @@ export function Sidebar() {
 
       <aside
         className={cn(
-          "fixed left-0 top-0 h-screen bg-sidebar flex flex-col border-r border-sidebar-border transition-all duration-300 z-50",
+          "fixed left-0 top-0 h-screen bg-edtech-navy flex flex-col border-r border-white/10 transition-all duration-300 z-50",
           collapsed ? "lg:w-[72px]" : "lg:w-[260px]",
           "w-[260px]",
           mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
       >
         {/* Logo Section */}
-        <div className="flex items-center justify-between p-4 border-b border-sidebar-border h-[65px]">
+        <div className="flex items-center justify-between p-4 border-b border-white/10 h-[65px]">
           {collapsed ? (
             <div className="flex items-center justify-center w-full">
               <button
                 onClick={() => toggleCollapsed(false)}
-                className="p-1.5 rounded-lg hover:bg-sidebar-accent transition-colors text-sidebar-foreground/70 hover:text-sidebar-foreground flex items-center justify-center"
+                className="p-1.5 rounded-lg hover:bg-white/5 transition-colors text-edtech-slate hover:text-white flex items-center justify-center"
                 title="Expand Sidebar"
               >
                 <Menu className="h-5 w-5" />
@@ -149,11 +149,11 @@ export function Sidebar() {
                 <div className="h-12 w-12 flex items-center justify-center flex-shrink-0">
                   <img src="/fevicon.ico" alt="EvalueX Logo" className="w-full h-full object-contain" />
                 </div>
-                <span className="font-black text-2xl text-sidebar-foreground tracking-tight">EvalueX</span>
+                <span className="font-black text-2xl text-white tracking-tight">EvalueX</span>
               </div>
               <button
                 onClick={() => toggleCollapsed(true)}
-                className="p-1.5 rounded-lg hover:bg-sidebar-accent transition-colors text-sidebar-foreground/70 hover:text-sidebar-foreground flex items-center justify-center"
+                className="p-1.5 rounded-lg hover:bg-white/5 transition-colors text-edtech-slate hover:text-white flex items-center justify-center"
                 title="Collapse Sidebar"
               >
                 <Menu className="h-5 w-5" />
@@ -177,11 +177,11 @@ export function Sidebar() {
                   "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200",
                   collapsed && "justify-center px-2",
                   isActive
-                    ? "bg-accent text-accent-foreground font-medium"
-                    : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
+                    ? "bg-edtech-indigo text-white font-medium shadow-sm"
+                    : "text-edtech-slate hover:bg-white/5 hover:text-white"
                 )}
               >
-                <item.icon className={cn("h-5 w-5 flex-shrink-0", isActive && "text-accent-foreground")} />
+                <item.icon className={cn("h-5 w-5 flex-shrink-0", isActive ? "text-white" : "text-edtech-slate")} />
                 {!collapsed && <span className="text-sm">{item.label}</span>}
               </button>
             );
@@ -189,29 +189,29 @@ export function Sidebar() {
         </nav>
 
         {/* User profile */}
-        <div className="p-3 border-t border-sidebar-border">
+        <div className="p-3 border-t border-white/10">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button
                 className={cn(
-                  "w-full flex items-center gap-3 p-2 rounded-lg hover:bg-sidebar-accent transition-colors",
+                  "w-full flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors",
                   collapsed && "justify-center"
                 )}
                 title={collapsed ? displayName : undefined}
               >
                 <Avatar className="h-9 w-9 flex-shrink-0">
-                  <AvatarFallback className="bg-accent/20 text-accent font-medium">
+                  <AvatarFallback className="bg-edtech-teal/20 text-edtech-teal font-semibold">
                     {userInitial}
                   </AvatarFallback>
                 </Avatar>
                 {!collapsed && (
                   <div className="flex-1 text-left">
-                    <p className="text-sm font-medium text-sidebar-foreground truncate">{displayName}</p>
-                    <p className="text-xs text-sidebar-foreground/60 truncate">{user?.email}</p>
+                    <p className="text-sm font-medium text-white truncate">{displayName}</p>
+                    <p className="text-xs text-edtech-slate truncate">{user?.email}</p>
                   </div>
                 )}
                 {!collapsed && (
-                  <Settings className="h-4 w-4 text-sidebar-foreground/50" />
+                  <Settings className="h-4 w-4 text-edtech-slate" />
                 )}
               </button>
             </DropdownMenuTrigger>
